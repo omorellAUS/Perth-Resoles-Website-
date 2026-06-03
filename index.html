@@ -9,8 +9,8 @@
   <style>
     body { font-family: system-ui, sans-serif; }
     .hero { 
-      background: linear-gradient(rgba(30,30,30,0.85), rgba(30,30,30,0.85)), 
-                  url('https://picsum.photos/id/1015/2000/1200'); 
+      background: linear-gradient(rgba(126, 125, 125, 0.45), rgba(30,30,30,0.85)), 
+                  url('Banner Images/Background.jpg'); 
       background-size: cover; 
       background-position: center;
     }
@@ -21,16 +21,25 @@
       transform: translateY(-8px);
       box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     }
+    .insta-tile {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
 
   <!-- Hero -->
-  <section class="hero text-white py-24 text-center">
-    <div class="max-w-5xl mx-auto px-6">
-      <img src="logo-white-bg.png" alt="Perth Resoles" class="mx-auto h-48 mb-6">
-      <p class="text-2xl mb-8 font-light">Edge Back. Life Extended.</p>
-      <p class="text-xl max-w-2xl mx-auto">Professional climbing shoe resoles in Perth, Western Australia</p>
+  <section class="hero text-white py-40 md:py-72 min-h-[90vh] flex items-center text-center">
+    <div class="max-w-5xl mx-auto px-5">
+      <p class="text-3xl md:text-5xl mb-6 font-light">Perth Resoles</p>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto">climbing shoe resoles and repairs in the Perth Hills</p>
+
+      <a href="#pricing" 
+         class="mt-10 inline-block bg-white text-gray-900 px-12 py-5 rounded-full text-xl font-semibold hover:bg-gray-100">
+        View Services & Pricing
+      </a>
     </div>
   </section>
 
@@ -42,9 +51,8 @@
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <!-- Service Cards -->
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/photo basic resole Unparallel.png" alt="Unparallel Resole" class="w-full h-56 object-cover">
+          <img src="Banner Images/photo basic resole Unparallel.png" alt="Unparallel Resole" class="w-full h-50 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Basic Resole with Unparallel 4.2mm RH</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$80.00</p>
@@ -52,7 +60,7 @@
         </div>
 
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/photo basic resole Unparallel.png" alt="5.5mm Resole" class="w-full h-56 object-cover">
+          <img src="Banner Images/photo basic resole Unparallel.png" alt="5.5mm Resole" class="w-full h-50 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Basic Resole Unparallel 5.5mm RH</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$90.00</p>
@@ -60,7 +68,7 @@
         </div>
 
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/Vibram basic resole.png" alt="Vibram Grip" class="w-full h-56 object-cover">
+          <img src="Banner Images/Vibram basic resole.png" alt="Vibram Grip" class="w-full h-50 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Basic Resole with Vibram XS Grip 4.0mm</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$80.00</p>
@@ -68,7 +76,7 @@
         </div>
 
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/Vibram basic resole.png" alt="Vibram Edge" class="w-full h-56 object-cover">
+          <img src="Banner Images/Vibram basic resole.png" alt="Vibram Edge" class="w-full h-50 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Basic Resole with Vibram XS Edge 4.0mm</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$80.00</p>
@@ -76,7 +84,7 @@
         </div>
 
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/Vibram Solutions Rand and Resole.jpg" alt="Rand Repair" class="w-full h-56 object-cover">
+          <img src="Banner Images/Rand+resole .png" alt="Rand Repair" class="w-full h-50 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Resole + Rand Repair with Vibram XS Grip 4.0mm</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$130.00</p>
@@ -84,7 +92,7 @@
         </div>
 
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/Rand+resole .png" alt="Rand Repair Unparallel" class="w-full h-56 object-cover">
+          <img src="Banner Images/Rand+resole .png" alt="Rand Repair Unparallel" class="w-full h-50 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Resole + Rand Repair with 4.2mm Unparallel RH</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$130.00</p>
@@ -92,7 +100,7 @@
         </div>
 
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/unparrallel 5.5mm RH.png" alt="5.5mm Rand Repair" class="w-full h-56 object-cover">
+          <img src="Banner Images/unparrallel 5.5mm RH.png" alt="5.5mm Rand Repair" class="w-full h-50 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Resole + Rand Repair with 5.5mm Unparallel RH</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$140.00</p>
@@ -100,7 +108,7 @@
         </div>
 
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/Stitch Repair.PNG" alt="Stitch Repair" class="w-full h-56 object-cover">
+          <img src="Banner Images/Stitch Repair.PNG" alt="Stitch Repair" class="w-full h-50 object-cover">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Shoe Stitch Repair</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$15.00</p>
@@ -118,8 +126,42 @@
           Message us on Instagram →
         </a>
       </div>
+
+      <!-- Professional Shoecare Guide Banner -->
+      <div class="mt-12 bg-gradient-to-br from-slate-800 to-gray-900 text-white p-10 rounded-3xl text-center border border-amber-500/30">
+        <div class="flex justify-center mb-6">
+          </div>
+        <h3 class="text-3xl font-bold mb-3">Shoe Care Guide</h3>
+        <p class="text-lg max-w-2xl mx-auto mb-8">Extend the life of your shoes and helps us deliver the highest quality resole.</p>
+        
+        <a href="shoecare.html" 
+           class="inline-flex items-center gap-3 bg-white text-gray-900 px-10 py-4 rounded-full text-lg font-semibold hover:bg-amber-200 transition">
+          <span>Read Full Shoe Care Guide</span>
+          <span class="text-xl">→</span>
+        </a>
+      </div>
     </div>
   </section>
+
+  <!-- Instagram Tile Gallery -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-4">Recent Projects</h2>
+      <p class="text-center text-gray-600 mb-12">Follow <a href="https://www.instagram.com/perthresoles/" target="_blank" class="text-blue-600">@perthresoles</a></p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Paste your 3 embed codes here -->
+        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DWTh926FNHN/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#3c3c3c; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+        
+        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DYrHUJDFb64/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#4b4b4b; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+        
+        <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DX8X6DIlUxg/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#424141; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Script -->
+  <script async src="https://www.instagram.com/embed.js"></script>
 
 </body>
 </html>
