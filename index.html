@@ -14,6 +14,13 @@
       background-size: cover; 
       background-position: center;
     }
+    .service-card {
+      transition: all 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -21,67 +28,91 @@
   <!-- Hero -->
   <section class="hero text-white py-24 text-center">
     <div class="max-w-5xl mx-auto px-6">
-      <!-- Try both logo names - change if needed -->
-      <img src="Instagram Logo2.jpg" alt="Perth Resoles" class="mx-auto h-48 mb-6">
+      <img src="logo-white-bg.png" alt="Perth Resoles" class="mx-auto h-48 mb-6">
       <p class="text-2xl mb-8 font-light">Edge Back. Life Extended.</p>
       <p class="text-xl max-w-2xl mx-auto">Professional climbing shoe resoles in Perth, Western Australia</p>
     </div>
   </section>
 
-  <!-- Pricing - Matching Your Square Shop -->
-  <section id="pricing" class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
+  <!-- Services Grid -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-4xl font-bold text-center mb-4">Services & Pricing</h2>
-      <p class="text-center text-gray-600 mb-12">All prices are for standard climbing shoes. Approach shoes and heavily worn shoes may require extra fees.</p>
+      <p class="text-center text-gray-600 mb-12">All prices are for standard climbing shoes. Final price may vary based on condition.</p>
 
-      <div class="max-w-4xl mx-auto">
-        <!-- Basic Resoles -->
-        <h3 class="text-2xl font-semibold mb-6 border-b pb-4">Basic Resoles</h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Basic Resole - 4.2mm Unparallel HS (Standard)</span>
-            <span class="font-bold text-xl">$80.00</span>
-          </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Basic Resole - 5.5mm Unparallel HS</span>
-            <span class="font-bold text-xl">$90.00</span>
-          </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Basic Resole - 4.0mm Vibram VX Edge</span>
-            <span class="font-bold text-xl">$80.00</span>
-          </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Basic Resole - 4.0mm Vibram VX Grip</span>
-            <span class="font-bold text-xl">$80.00</span>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Service Cards -->
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="Banner Images/photo basic resole Unparallel.png" alt="Unparallel Resole" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg leading-tight">Basic Resole with Unparallel 4.2mm RH</h3>
+            <p class="text-3xl font-bold text-gray-900 mt-4">$80.00</p>
           </div>
         </div>
 
-        <!-- Resole + Rand Repair -->
-        <h3 class="text-2xl font-semibold mt-16 mb-6 border-b pb-4">Resole + Rand Repair</h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Resole + Rand Repair - 4.2mm Unparallel</span>
-            <span class="font-bold text-xl">$130.00</span>
-          </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Resole + Rand Repair - 5.5mm Unparallel</span>
-            <span class="font-bold text-xl">$140.00</span>
-          </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Resole + Rand Repair - Vibram VX Edge</span>
-            <span class="font-bold text-xl">$130.00</span>
-          </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Resole + Rand Repair - Vibram VX Grip</span>
-            <span class="font-bold text-xl">$130.00</span>
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="Banner Images/photo basic resole Unparallel.png" alt="5.5mm Resole" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg leading-tight">Basic Resole Unparallel 5.5mm RH</h3>
+            <p class="text-3xl font-bold text-gray-900 mt-4">$90.00</p>
           </div>
         </div>
+
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="Banner Images/Vibram basic resole.png" alt="Vibram Grip" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg leading-tight">Basic Resole with Vibram XS Grip 4.0mm</h3>
+            <p class="text-3xl font-bold text-gray-900 mt-4">$80.00</p>
+          </div>
+        </div>
+
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="Banner Images/Vibram basic resole.png" alt="Vibram Edge" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg leading-tight">Basic Resole with Vibram XS Edge 4.0mm</h3>
+            <p class="text-3xl font-bold text-gray-900 mt-4">$80.00</p>
+          </div>
+        </div>
+
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="Banner Images/Vibram Solutions Rand and Resole.jpg" alt="Rand Repair" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg leading-tight">Resole + Rand Repair with Vibram XS Grip 4.0mm</h3>
+            <p class="text-3xl font-bold text-gray-900 mt-4">$130.00</p>
+          </div>
+        </div>
+
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="Banner Images/Rand+resole .png" alt="Rand Repair Unparallel" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg leading-tight">Resole + Rand Repair with 4.2mm Unparallel RH</h3>
+            <p class="text-3xl font-bold text-gray-900 mt-4">$130.00</p>
+          </div>
+        </div>
+
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="Banner Images/unparrallel 5.5mm RH.png" alt="5.5mm Rand Repair" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg leading-tight">Resole + Rand Repair with 5.5mm Unparallel RH</h3>
+            <p class="text-3xl font-bold text-gray-900 mt-4">$140.00</p>
+          </div>
+        </div>
+
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="Banner Images/Stitch Repair.PNG" alt="Stitch Repair" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg leading-tight">Shoe Stitch Repair</h3>
+            <p class="text-3xl font-bold text-gray-900 mt-4">$15.00</p>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Call to Action -->
-      <div class="mt-16 bg-gray-900 text-white p-12 rounded-3xl text-center">
-        <h3 class="text-3xl font-bold mb-4">Ready to Book?</h3>
-        <p class="mb-8">Send photos of your shoes via Instagram for a personalised quote and turnaround time.</p>
+      <!-- CTA Banner -->
+      <div class="mt-20 bg-gray-900 text-white p-12 rounded-3xl text-center">
+        <h3 class="text-3xl font-bold mb-4">Need a Custom Quote?</h3>
+        <p class="text-lg mb-8">Send clear photos of your shoes (front, side, and sole) on Instagram for accurate pricing and turnaround time.</p>
         <a href="https://www.instagram.com/perthresoles/" target="_blank" 
            class="inline-block bg-white text-gray-900 px-12 py-5 rounded-full text-xl font-semibold hover:bg-gray-100">
           Message us on Instagram →
