@@ -14,6 +14,13 @@
       background-size: cover; 
       background-position: center;
     }
+    .service-card {
+      transition: all 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -21,71 +28,87 @@
   <!-- Hero -->
   <section class="hero text-white py-24 text-center">
     <div class="max-w-5xl mx-auto px-6">
-      <!-- Try both logo names - change if needed -->
-      <img src="Instagram Logo2.jpg" alt="Perth Resoles" class="mx-auto h-48 mb-6">
+      <img src="logo-dark-bg.png" alt="Perth Resoles" class="mx-auto h-48 mb-6">
       <p class="text-2xl mb-8 font-light">Edge Back. Life Extended.</p>
       <p class="text-xl max-w-2xl mx-auto">Professional climbing shoe resoles in Perth, Western Australia</p>
     </div>
   </section>
 
-  <!-- Pricing - Matching Your Square Shop -->
-  <section id="pricing" class="py-20 bg-white">
+  <!-- Services Grid - Square Shop Style -->
+  <section class="py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-4xl font-bold text-center mb-4">Services & Pricing</h2>
-      <p class="text-center text-gray-600 mb-12">All prices are for standard climbing shoes. Approach shoes and heavily worn shoes may require extra fees.</p>
+      <p class="text-center text-gray-600 mb-12">High-quality climbing shoe resoles • Fast turnaround in Perth</p>
 
-      <div class="max-w-4xl mx-auto">
-        <!-- Basic Resoles -->
-        <h3 class="text-2xl font-semibold mb-6 border-b pb-4">Basic Resoles</h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Basic Resole - 4.2mm Unparallel HS (Standard)</span>
-            <span class="font-bold text-xl">$80.00</span>
-          </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Basic Resole - 5.5mm Unparallel HS</span>
-            <span class="font-bold text-xl">$90.00</span>
-          </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Basic Resole - 4.0mm Vibram VX Edge</span>
-            <span class="font-bold text-xl">$80.00</span>
-          </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Basic Resole - 4.0mm Vibram VX Grip</span>
-            <span class="font-bold text-xl">$80.00</span>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card 1 -->
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="https://picsum.photos/id/1015/600/400" alt="Unparallel Resole" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg">Basic Resole - 4.2mm Unparallel HS</h3>
+            <p class="text-gray-600 text-sm mt-1">Standard thickness - Most popular</p>
+            <p class="text-3xl font-bold mt-4">$80.00</p>
           </div>
         </div>
 
-        <!-- Resole + Rand Repair -->
-        <h3 class="text-2xl font-semibold mt-16 mb-6 border-b pb-4">Resole + Rand Repair</h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Resole + Rand Repair - 4.2mm Unparallel</span>
-            <span class="font-bold text-xl">$130.00</span>
+        <!-- Card 2 -->
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="https://picsum.photos/id/201/600/400" alt="5.5mm Resole" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg">Basic Resole - 5.5mm Unparallel HS</h3>
+            <p class="text-gray-600 text-sm mt-1">Thicker rubber for longer life</p>
+            <p class="text-3xl font-bold mt-4">$90.00</p>
           </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Resole + Rand Repair - 5.5mm Unparallel</span>
-            <span class="font-bold text-xl">$140.00</span>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="https://picsum.photos/id/133/600/400" alt="Vibram Resole" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg">Basic Resole - 4.0mm Vibram VX Grip / Edge</h3>
+            <p class="text-gray-600 text-sm mt-1">Premium Vibram rubber</p>
+            <p class="text-3xl font-bold mt-4">$80.00</p>
           </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Resole + Rand Repair - Vibram VX Edge</span>
-            <span class="font-bold text-xl">$130.00</span>
+        </div>
+
+        <!-- Rand Repair Cards -->
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="https://picsum.photos/id/201/600/400" alt="Rand Repair" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg">Resole + Full Rand Repair</h3>
+            <p class="text-gray-600 text-sm mt-1">Includes rand repair + resole</p>
+            <p class="text-3xl font-bold mt-4">$130 – $140</p>
           </div>
-          <div class="flex justify-between items-center p-6 bg-gray-50 rounded-2xl">
-            <span>Resole + Rand Repair - Vibram VX Grip</span>
-            <span class="font-bold text-xl">$130.00</span>
+        </div>
+
+        <!-- Add-ons -->
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="https://picsum.photos/id/180/600/400" alt="Toe Cap Repair" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg">Toe Cap / Partial Rand Repair</h3>
+            <p class="text-gray-600 text-sm mt-1">Add-on service</p>
+            <p class="text-3xl font-bold mt-4">+$30</p>
+          </div>
+        </div>
+
+        <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+          <img src="https://picsum.photos/id/251/600/400" alt="Stitching Repair" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="font-semibold text-lg">Stitching / Seam Repair</h3>
+            <p class="text-gray-600 text-sm mt-1">Add-on service</p>
+            <p class="text-3xl font-bold mt-4">+$15</p>
           </div>
         </div>
       </div>
 
-      <!-- Call to Action -->
-      <div class="mt-16 bg-gray-900 text-white p-12 rounded-3xl text-center">
-        <h3 class="text-3xl font-bold mb-4">Ready to Book?</h3>
-        <p class="mb-8">Send photos of your shoes via Instagram for a personalised quote and turnaround time.</p>
+      <!-- CTA -->
+      <div class="mt-16 text-center">
         <a href="https://www.instagram.com/perthresoles/" target="_blank" 
-           class="inline-block bg-white text-gray-900 px-12 py-5 rounded-full text-xl font-semibold hover:bg-gray-100">
-          Message us on Instagram →
+           class="inline-block bg-gray-900 text-white px-12 py-5 rounded-full text-xl font-semibold hover:bg-gray-800">
+          Send Photos on Instagram for Quote →
         </a>
+        <p class="text-gray-500 mt-6">Best way to get accurate pricing and turnaround time</p>
       </div>
     </div>
   </section>
