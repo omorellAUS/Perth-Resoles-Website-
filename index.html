@@ -51,8 +51,41 @@
       <h2 class="text-4xl font-bold text-center mb-4">Services & Pricing</h2>
       <p class="text-center text-gray-600 mb-12">All prices are for standard climbing shoes. Final price may vary based on condition.</p>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="max-w-xl mx-auto mb-14 bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
+        <h3 class="text-2xl font-semibold text-center mb-6">HOW TO ORDER YOUR SHOES</h3>
+        <p class="text-lg text-center mb-2">1. Select your shoe repairs</p>
+        <p class="text-lg text-center mb-2">2. Complete payment and Tag your shoes</p>
+        <p class="text-lg text-center mb-6">3. Drop off your shoes</p>        
 
+        <label class="block text-sm font-semibold">Rubber 
+          <select id="rubber" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
+            <option value="80" data-key="42">Unparallel 4.2mm RH — base $80</option>
+            <option value="90" data-key="55">Unparallel 5.5mm RH — base $90</option>
+            <option value="80" data-key="grip">Vibram XS Grip 4.0mm — base $80</option>
+            <option value="80" data-key="edge">Vibram XS Edge 4.0mm — base $80</option>
+          </select>
+        </label>
+        <label class="block text-sm font-semibold mt-4">Rand Repair Options
+          <select id="repair" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
+            <option value="0" data-key="none">None</option>
+            <option value="40" data-key="toe">Toe cap    —     $40 Both shoes</option>
+            <option value="60" data-key="half">Half rand —  $60 Both shoes</option>
+            <option value="90" data-key="full">Full rand —  $90 Both shoes</option>
+             <option value="20" data-key="toe">Toe cap   —  $20 single shoe only</option>
+            <option value="30" data-key="half">Half rand —  $30 single shoe only</option>
+              <option value="45" data-key="full">Full rand —$45 single shoe only</option>
+          </select>
+        </label>
+        <div class="mt-6 bg-gray-900 text-white rounded-2xl p-5 text-center">
+          <p class="text-sm text-gray-300">Pair total</p>
+          <p id="total" class="text-4xl font-bold mt-1">$80</p>
+          <p class="text-xs text-gray-400 mt-2">Final price may change if the shoes need more work.</p>
+        </div>
+        <a id="pay" href="https://square.link/u/lGuMnojq" target="_blank" class="mt-4 block w-full bg-gray-900 text-white text-center py-4 rounded-full font-semibold">Pay Now with Square</a>
+        <p class="text-xs text-gray-500 text-center mt-3">After payment you get an email with drop-off instructions. Turnaround is 2–3 weeks from payment.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
           <img src="Banner Images/photo basic resole Unparallel.png" alt="Basic Resole 4.2mm" class="w-full h-56 object-cover">
           <div class="p-6">
@@ -61,7 +94,6 @@
             <a href="https://square.link/u/lGuMnojq" target="_blank" class="mt-6 block w-full bg-gray-900 hover:bg-black text-white text-center py-3.5 rounded-full font-semibold">Pay Now with Square →</a>
           </div>
         </div>
-
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
           <img src="Banner Images/unparrallel 5.5mm RH.png" alt="Basic Resole 5.5mm" class="w-full h-56 object-cover">
           <div class="p-6">
@@ -70,7 +102,6 @@
             <a href="https://square.link/u/xBFBHwvs" target="_blank" class="mt-6 block w-full bg-gray-900 hover:bg-black text-white text-center py-3.5 rounded-full font-semibold">Pay Now with Square →</a>
           </div>
         </div>
-
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
           <img src="Banner Images/Vibram basic resole.png" alt="Vibram Grip" class="w-full h-56 object-cover">
           <div class="p-6">
@@ -79,7 +110,6 @@
             <a href="https://square.link/u/A5KCjPif" target="_blank" class="mt-6 block w-full bg-gray-900 hover:bg-black text-white text-center py-3.5 rounded-full font-semibold">Pay Now with Square →</a>
           </div>
         </div>
-
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
           <img src="Banner Images/Vibram basic resole.png" alt="Vibram Edge" class="w-full h-56 object-cover">
           <div class="p-6">
@@ -88,7 +118,6 @@
             <a href="https://square.link/u/iyoIYami" target="_blank" class="mt-6 block w-full bg-gray-900 hover:bg-black text-white text-center py-3.5 rounded-full font-semibold">Pay Now with Square →</a>
           </div>
         </div>
-
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
           <img src="Banner Images/Rand+resole .png" alt="Rand Repair Unparallel" class="w-full h-56 object-cover">
           <div class="p-6">
@@ -97,7 +126,6 @@
             <a href="https://square.link/u/nA9EOR50" target="_blank" class="mt-6 block w-full bg-gray-900 hover:bg-black text-white text-center py-3.5 rounded-full font-semibold">Pay Now with Square →</a>
           </div>
         </div>
-
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
           <img src="Banner Images/unparrallel 5.5mm RH.png" alt="5.5mm Rand Repair" class="w-full h-56 object-cover">
           <div class="p-6">
@@ -106,7 +134,6 @@
             <a href="https://square.link/u/fJVBMwd9" target="_blank" class="mt-6 block w-full bg-gray-900 hover:bg-black text-white text-center py-3.5 rounded-full font-semibold">Pay Now with Square →</a>
           </div>
         </div>
-
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
           <img src="Banner Images/Rand+resole .png" alt="Rand Repair Grip" class="w-full h-56 object-cover">
           <div class="p-6">
@@ -115,7 +142,6 @@
             <a href="https://square.link/u/ES48MSKe" target="_blank" class="mt-6 block w-full bg-gray-900 hover:bg-black text-white text-center py-3.5 rounded-full font-semibold">Pay Now with Square →</a>
           </div>
         </div>
-
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
           <img src="Banner Images/Rand+resole .png" alt="Rand Repair Edge" class="w-full h-56 object-cover">
           <div class="p-6">
@@ -124,7 +150,6 @@
             <a href="https://square.link/u/Y3k3ZZn3" target="_blank" class="mt-6 block w-full bg-gray-900 hover:bg-black text-white text-center py-3.5 rounded-full font-semibold">Pay Now with Square →</a>
           </div>
         </div>
-
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
           <img src="Banner Images/Stitch Repair.PNG" alt="Stitch Repair" class="w-full h-56 object-cover">
           <div class="p-6">
@@ -133,9 +158,7 @@
             <a href="https://square.link/u/YtabgAob" target="_blank" class="mt-6 block w-full bg-gray-900 hover:bg-black text-white text-center py-3.5 rounded-full font-semibold">Pay Now with Square →</a>
           </div>
         </div>
-
       </div>
-
       <!-- CTA Banner -->
       <div class="mt-20 bg-gray-900 text-white p-12 rounded-3xl text-center">
         <h3 class="text-3xl font-bold mb-4">Need a Custom Quote?</h3>
@@ -147,7 +170,6 @@
       </div>
     </div>
   </section>
-
   <!-- Instagram Tile Gallery -->
   <section class="py-20 bg-gray-50">
     <div class="max-w-6xl mx-auto px-6">
@@ -163,9 +185,55 @@
       </div>
     </div>
   </section>
-
   <!-- Instagram Script -->
   <script async src="https://www.instagram.com/embed.js"></script>
-
+  <script>
+    // Paste a Square link in each empty quote. Menu text is not changed.
+    // Key is rubber + repair price, so both-shoes and single-shoe stay separate.
+    const links = {
+      "42-0": "https://square.link/u/lGuMnojq",
+      "42-40": "https://square.link/u/o1Tp4wIL",
+      "42-60": "https://square.link/u/nA9EOR50",
+      "42-90": "https://square.link/u/IP50twES",
+      "42-20": "https://square.link/u/dvB76uyU",
+      "42-30": "https://square.link/u/SDr31Jjm",
+      "42-45": "https://square.link/u/ZaaHiv91",
+      "55-0": "https://square.link/u/xBFBHwvs",
+      "55-40": "https://square.link/u/2R7umNPb",
+      "55-60": "https://square.link/u/fJVBMwd9",
+      "55-90": "https://square.link/u/S3lkabdC",
+      "55-20": "https://square.link/u/F2V4euQr",
+      "55-30": "https://square.link/u/UqcVjY3X",
+      "55-45": "https://square.link/u/5tUvfu1k",
+      "grip-0": "https://square.link/u/A5KCjPif",
+      "grip-40": "https://square.link/u/IdcdxHRB",
+      "grip-60": "https://square.link/u/ES48MSKe",
+      "grip-90": "https://square.link/u/wD4FDHZY",
+      "grip-20": "https://square.link/u/x4JjXSjD",
+      "grip-30": "https://square.link/u/2uYWSwZ3",
+      "grip-45": "https://square.link/u/lVfhIg2z",
+      "edge-0": "https://square.link/u/iyoIYami",
+      "edge-40": "https://square.link/u/ffnBmFFB",
+      "edge-60": "https://square.link/u/Y3k3ZZn3",
+      "edge-90": "https://square.link/u/Fen4XboL",
+      "edge-20": "https://square.link/u/Uh6Yuwod",
+      "edge-30": "https://square.link/u/ZiVFiSIc",
+      "edge-45": "https://square.link/u/j2z2ui7F"
+    };
+    const rubber = document.getElementById("rubber");
+    const repair = document.getElementById("repair");
+    const total = document.getElementById("total");
+    const pay = document.getElementById("pay");
+    function update() {
+      const rubberKey = rubber.options[rubber.selectedIndex].dataset.key;
+      const repairPrice = repair.value;
+      total.textContent = "$" + (Number(rubber.value) + Number(repairPrice));
+      const url = links[rubberKey + "-" + repairPrice];
+      pay.href = url || "#pricing";
+      pay.textContent = url ? "Pay Now with Square" : "Add Square link for this option";
+    }
+    rubber.addEventListener("change", update);
+    repair.addEventListener("change", update);
+  </script>
 </body>
 </html>
