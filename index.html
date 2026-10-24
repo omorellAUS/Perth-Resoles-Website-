@@ -279,8 +279,8 @@
         created: new Date().toISOString()
       };
       // Open Square synchronously (popup blockers), then log in the background.
-      const win = window.open(currentUrl(), "_blank", "noopener");
-      if (!win) window.location.href = currentUrl();
+      const win = window.open(currentUrl(), "_blank");
+      if (win) win.opener = null; else window.location.href = currentUrl();
       if (ORDER_ENDPOINT) {
         navigator.sendBeacon(ORDER_ENDPOINT, new Blob([JSON.stringify(order)], { type: "text/plain" }));
       }
