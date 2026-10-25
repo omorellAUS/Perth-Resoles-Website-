@@ -113,11 +113,12 @@
           </div>
         </div>
 
-        <label for="dropoff" class="block text-sm font-semibold mt-4">Drop off &amp; pick up</label>
-        <select id="dropoff" name="dropoff" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
+        <label for="dropoff" class="block text-sm font-semibold mt-4">Drop off &amp; pick up <span class="text-red-600" aria-hidden="true">*</span></label>
+        <select id="dropoff" name="dropoff" required aria-describedby="dropoff-err" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
           <option value="urban-jungle" selected>Urban Jungle Climbing Gym (counter)</option>
           <option value="arrange">Other &mdash; I'll message Perth Resoles to arrange handover</option>
         </select>
+        <p id="dropoff-err" class="hidden text-sm text-red-600 mt-1">Please choose where you'll drop off your shoes.</p>
         <p id="dropoff-note" class="hidden text-sm text-gray-600 mt-1">
           After paying, message us on <a href="https://www.instagram.com/perthresoles/" target="_blank" rel="noopener" class="underline">Instagram</a> with your order number to arrange handover.
         </p>
@@ -132,7 +133,20 @@
                 class="mt-4 block w-full bg-gray-900 text-white text-center py-4 rounded-full font-semibold aria-disabled:opacity-50">
           Pay Now with Square
         </button>
-        <p id="pay-hint" class="text-xs text-gray-500 text-center mt-3">Enter your shoe model and size to continue. Square opens in a new tab.</p>
+        <p id="pay-hint" class="text-xs text-gray-500 text-center mt-3">Enter your shoe model and size to continue. Next you&rsquo;ll copy your shoe details, then pay on Square (opens in a new tab).</p>
+
+        <!-- Shown after Pay Now: Square payment links can't be pre-filled via the URL, so the customer copies their shoe details into the Square note. -->
+        <div id="confirm" class="hidden mt-6 bg-gray-900 text-white rounded-2xl p-5 border-2 border-[#e3b93c]" role="region" aria-labelledby="confirm-title" tabindex="-1">
+          <h4 id="confirm-title" class="text-lg font-semibold text-[#e3b93c]">One more step before you pay</h4>
+          <p class="text-sm text-gray-200 mt-2">Square can&rsquo;t fill in your shoe details for us. Please <strong>copy the details below and paste them into the note box</strong> on the Square checkout page, so we know which shoes are yours.</p>
+          <label for="confirm-text" class="sr-only">Your order details</label>
+          <textarea id="confirm-text" readonly rows="5" class="mt-3 w-full rounded-xl bg-black text-white border border-gray-700 px-3 py-2 text-sm font-mono resize-none"></textarea>
+          <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button id="copy-btn" type="button" class="w-full bg-[#e3b93c] text-gray-900 py-3 rounded-full font-semibold hover:bg-[#f0c94e]">Copy details</button>
+            <a id="square-link" href="#" target="_blank" rel="noopener" class="block w-full text-center bg-white text-gray-900 py-3 rounded-full font-semibold hover:bg-gray-100">Continue to Square &rarr;</a>
+          </div>
+          <p id="copy-status" class="text-xs text-gray-300 text-center mt-2" aria-live="polite"></p>
+        </div>
       </form>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -241,49 +255,83 @@
     const rubber = $("rubber"), repair = $("repair"), dropoff = $("dropoff");
     const model = $("shoe-model"), size = $("shoe-size");
     const total = $("total"), pay = $("pay"), form = $("order-form");
+    const confirmBox = $("confirm"), confirmText = $("confirm-text"), squareLink = $("square-link");
 
     function currentUrl() {
       const key = rubber.options[rubber.selectedIndex].dataset.key + "-" + repair.value;
       return links[key];
     }
     function isValid() {
-      return model.value.trim().length >= 2 && size.value.trim().length >= 1 && !!currentUrl();
+      return model.value.trim().length >= 2 && size.value.trim().length >= 1 && !!dropoff.value && !!currentUrl();
     }
     function update() {
       total.textContent = "$" + (Number(rubber.value) + Number(repair.value));
       $("dropoff-note").classList.toggle("hidden", dropoff.value !== "arrange");
       pay.setAttribute("aria-disabled", String(!isValid()));
+      // Details changed after confirming: hide the panel so the copied note can't go stale.
+      confirmBox.classList.add("hidden");
     }
     function showErrors() {
-      [[model, "shoe-model-err"], [size, "shoe-size-err"]].forEach(([el, errId]) => {
+      [[model, "shoe-model-err"], [size, "shoe-size-err"], [dropoff, "dropoff-err"]].forEach(([el, errId]) => {
         const bad = !el.value.trim();
         el.setAttribute("aria-invalid", String(bad));
         el.classList.toggle("border-red-500", bad);
         $(errId).classList.toggle("hidden", !bad);
       });
-      const firstBad = [model, size].find((el) => !el.value.trim());
+      const firstBad = [model, size, dropoff].find((el) => !el.value.trim());
       if (firstBad) firstBad.focus();
+    }
+
+    function noteText(order) {
+      return [
+        "Perth Resoles order " + order.ref,
+        "Shoe: " + order.shoe_model + " | Size: " + order.shoe_size,
+        "Rubber: " + order.rubber_name + " | Rand repair: " + order.repair_name,
+        "Drop-off: " + order.dropoff_name
+      ].join("\n");
     }
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (!isValid()) { showErrors(); return; }
+      const clean = (t) => t.replace(/\s*\u2014\s*/g, " - ").trim();
       const order = {
         ref: "PR-" + Date.now().toString(36).toUpperCase(),
         rubber: rubber.options[rubber.selectedIndex].text,
         repair: repair.options[repair.selectedIndex].text,
+        rubber_name: clean(rubber.options[rubber.selectedIndex].text.split("\u2014")[0]),
+        repair_name: clean(repair.options[repair.selectedIndex].text),
         shoe_model: model.value.trim(),
         shoe_size: size.value.trim(),
         dropoff: dropoff.value,
+        dropoff_name: clean(dropoff.options[dropoff.selectedIndex].text),
         total: Number(rubber.value) + Number(repair.value),
         created: new Date().toISOString()
       };
-      // Open Square synchronously (popup blockers), then log in the background.
-      const win = window.open(currentUrl(), "_blank");
-      if (win) win.opener = null; else window.location.href = currentUrl();
       if (ORDER_ENDPOINT) {
         navigator.sendBeacon(ORDER_ENDPOINT, new Blob([JSON.stringify(order)], { type: "text/plain" }));
       }
+      // Square payment links don't accept a pre-filled note in the URL, so show a
+      // confirmation panel: the customer copies their details, then opens Square.
+      confirmText.value = noteText(order);
+      squareLink.href = currentUrl();
+      $("copy-status").textContent = "";
+      confirmBox.classList.remove("hidden");
+      confirmBox.scrollIntoView({ behavior: "smooth", block: "center" });
+      confirmBox.focus({ preventScroll: true });
+    });
+
+    $("copy-btn").addEventListener("click", async () => {
+      const status = $("copy-status");
+      try {
+        await navigator.clipboard.writeText(confirmText.value);
+      } catch (err) {
+        confirmText.select();
+        document.execCommand("copy");
+      }
+      status.textContent = "Copied! Now tap \u201cContinue to Square\u201d and paste it into the note.";
+      $("copy-btn").textContent = "Copied \u2713";
+      setTimeout(() => { $("copy-btn").textContent = "Copy details"; }, 2500);
     });
 
     [rubber, repair, dropoff].forEach((el) => el.addEventListener("change", update));
