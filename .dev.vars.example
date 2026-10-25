@@ -1,0 +1,7 @@
+# Copy to .dev.vars (never commit .dev.vars). Local trial = SANDBOX ONLY.
+SQUARE_ACCESS_TOKEN=paste-your-SANDBOX-access-token-here
+SQUARE_ENV=sandbox
+# Optional: sandbox location id (otherwise the first active sandbox location is used)
+SQUARE_LOCATION_ID=
+# true = don't call Square at all; show the request that would be sent
+SQUARE_DRY_RUN=false
