@@ -61,8 +61,8 @@
         <h3 class="text-2xl font-semibold text-center mb-5">How to order</h3>
         <ol class="space-y-3 text-base md:text-lg list-decimal list-inside">
           <li><strong>Scan the QR code</strong> on the Perth Resoles board at Urban Jungle Climbing Gym (or keep going here).</li>
-          <li><strong>Select your options</strong>: rubber, rand repair, shoe model and shoe size.</li>
-          <li><strong>Follow the link and complete your order</strong> (make a payment with Square).</li>
+          <li><strong>Select your options</strong>: rubber, rand repair, shoe model, shoe size and your contact details.</li>
+          <li><strong>Pay securely with Square</strong>. Your shoe details and order number are attached to your order automatically.</li>
           <li><strong>Tag your shoes</strong> with your name and order number and hand them in at the Urban Jungle counter. Tags are on the little wooden Perth Resoles board at the gym.</li>
         </ol>
         <p class="text-sm text-gray-600 text-center mt-4">Turnaround is 3 weeks from when we collect your shoes.</p>
@@ -73,41 +73,45 @@
 
         <label for="rubber" class="block text-sm font-semibold">Rubber</label>
         <select id="rubber" name="rubber" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
-          <option value="80" data-key="42">Unparallel 4.2mm RH &mdash; base $80</option>
-          <option value="90" data-key="55">Unparallel 5.5mm RH &mdash; base $90</option>
-          <option value="80" data-key="grip">Vibram XS Grip 4.0mm &mdash; base $80</option>
-          <option value="80" data-key="edge">Vibram XS Edge 4.0mm &mdash; base $80</option>
+          <option value="unparallel-4.2" data-price="80">Unparallel 4.2mm RH &mdash; base $80</option>
+          <option value="unparallel-5.5" data-price="90">Unparallel 5.5mm RH &mdash; base $90</option>
+          <option value="vibram-xs-grip" data-price="80">Vibram XS Grip 4.0mm &mdash; base $80</option>
+          <option value="vibram-xs-edge" data-price="80">Vibram XS Edge 4.0mm &mdash; base $80</option>
         </select>
 
-        <label for="repair" class="block text-sm font-semibold mt-4">Rand repair</label>
-        <select id="repair" name="repair" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
-          <option value="0">None</option>
-          <optgroup label="Both shoes">
-            <option value="40">Toe cap &mdash; $40 (both shoes)</option>
-            <option value="60">Half rand &mdash; $60 (both shoes)</option>
-            <option value="90">Full rand &mdash; $90 (both shoes)</option>
-          </optgroup>
-          <optgroup label="Single shoe only">
-            <option value="20">Toe cap &mdash; $20 (single shoe)</option>
-            <option value="30">Half rand &mdash; $30 (single shoe)</option>
-            <option value="45">Full rand &mdash; $45 (single shoe)</option>
-          </optgroup>
-        </select>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label for="rand" class="block text-sm font-semibold">Rand repair</label>
+            <select id="rand" name="rand" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
+              <option value="none" data-both="0" data-single="0">None</option>
+              <option value="toe-cap" data-both="40" data-single="20">Toe cap &mdash; $40 / $20</option>
+              <option value="half-rand" data-both="60" data-single="30">Half rand &mdash; $60 / $30</option>
+              <option value="full-rand" data-both="90" data-single="45">Full rand &mdash; $90 / $45</option>
+            </select>
+          </div>
+          <div>
+            <label for="rand-coverage" class="block text-sm font-semibold">Rand repair on</label>
+            <select id="rand-coverage" name="rand_coverage" disabled aria-describedby="rand-coverage-err" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base disabled:bg-gray-100 disabled:text-gray-400">
+              <option value="both">Both shoes</option>
+              <option value="single">Single shoe only</option>
+            </select>
+            <p id="rand-coverage-err" class="hidden text-sm text-red-600 mt-1">Please choose both shoes or a single shoe.</p>
+          </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-1">Rand prices shown as both shoes / single shoe.</p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
           <div>
             <label for="shoe-model" class="block text-sm font-semibold">Shoe brand &amp; model <span class="text-red-600" aria-hidden="true">*</span></label>
             <input id="shoe-model" name="shoe_model" type="text" required maxlength="60" autocomplete="off"
-                   placeholder="e.g. La Sportiva Solution"
-                   aria-describedby="shoe-model-err"
+                   placeholder="e.g. La Sportiva Solution" aria-describedby="shoe-model-err"
                    class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
             <p id="shoe-model-err" class="hidden text-sm text-red-600 mt-1">Please enter your shoe brand and model.</p>
           </div>
           <div>
             <label for="shoe-size" class="block text-sm font-semibold">Shoe size <span class="text-red-600" aria-hidden="true">*</span></label>
             <input id="shoe-size" name="shoe_size" type="text" required maxlength="15" autocomplete="off"
-                   placeholder="e.g. EU 41.5"
-                   aria-describedby="shoe-size-err"
+                   placeholder="e.g. EU 41.5" aria-describedby="shoe-size-err"
                    class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
             <p id="shoe-size-err" class="hidden text-sm text-red-600 mt-1">Please enter your shoe size.</p>
           </div>
@@ -123,30 +127,48 @@
           After paying, message us on <a href="https://www.instagram.com/perthresoles/" target="_blank" rel="noopener" class="underline">Instagram</a> with your order number to arrange handover.
         </p>
 
+        <h4 class="text-sm font-semibold uppercase tracking-wide text-gray-500 mt-6">Your details</h4>
+        <p class="text-xs text-gray-500">We use these for your order confirmation and to tell you when your shoes are ready.</p>
+        <div class="grid grid-cols-1 gap-4 mt-2">
+          <div>
+            <label for="customer-name" class="block text-sm font-semibold">Name <span class="text-red-600" aria-hidden="true">*</span></label>
+            <input id="customer-name" name="customer_name" type="text" required maxlength="80" autocomplete="name"
+                   placeholder="e.g. Alex Smith" aria-describedby="customer-name-err"
+                   class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
+            <p id="customer-name-err" class="hidden text-sm text-red-600 mt-1">Please enter your name.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label for="email" class="block text-sm font-semibold">Email <span class="text-red-600" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email"
+                   placeholder="you@example.com" aria-describedby="email-err"
+                   class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
+            <p id="email-err" class="hidden text-sm text-red-600 mt-1">Please enter a valid email address.</p>
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-semibold">Phone <span class="text-gray-500 font-normal">(optional)</span></label>
+            <input id="phone" name="phone" type="tel" maxlength="25" autocomplete="tel" inputmode="tel"
+                   placeholder="e.g. 0412 345 678" aria-describedby="phone-err"
+                   class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
+            <p id="phone-err" class="hidden text-sm text-red-600 mt-1">Please check your phone number (e.g. 0412 345 678).</p>
+          </div>
+        </div>
+
         <div class="mt-6 bg-gray-900 text-white rounded-2xl p-5 text-center" aria-live="polite">
           <p class="text-sm text-gray-300">Total price</p>
-          <p id="total" class="text-4xl font-bold mt-1">$80</p>
-          <p class="text-xs text-gray-400 mt-2">Final price may change if the shoes need more work.</p>
+          <p id="total" class="text-4xl font-bold mt-1 text-[#e3b93c]">$80</p>
+          <p id="total-desc" class="text-xs text-gray-400 mt-2">Final price may change if the shoes need more work.</p>
         </div>
+
+        <div id="form-error" role="alert" class="hidden mt-4 rounded-2xl border-2 border-[#e3b93c] bg-gray-900 text-white p-4 text-sm"></div>
 
         <button id="pay" type="submit" aria-disabled="true"
-                class="mt-4 block w-full bg-gray-900 text-white text-center py-4 rounded-full font-semibold aria-disabled:opacity-50">
-          Pay Now with Square
+                class="mt-4 flex items-center justify-center gap-3 w-full bg-gray-900 text-white text-center py-4 rounded-full font-semibold aria-disabled:opacity-50">
+          <svg id="pay-spinner" class="hidden animate-spin h-5 w-5 text-[#e3b93c]" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle><path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg>
+          <span id="pay-label">Pay Now with Square</span>
         </button>
-        <p id="pay-hint" class="text-xs text-gray-500 text-center mt-3">Enter your shoe model and size to continue. Next you&rsquo;ll copy your shoe details, then pay on Square (opens in a new tab).</p>
-
-        <!-- Shown after Pay Now: Square payment links can't be pre-filled via the URL, so the customer copies their shoe details into the Square note. -->
-        <div id="confirm" class="hidden mt-6 bg-gray-900 text-white rounded-2xl p-5 border-2 border-[#e3b93c]" role="region" aria-labelledby="confirm-title" tabindex="-1">
-          <h4 id="confirm-title" class="text-lg font-semibold text-[#e3b93c]">One more step before you pay</h4>
-          <p class="text-sm text-gray-200 mt-2">Square can&rsquo;t fill in your shoe details for us. Please <strong>copy the details below and paste them into the note box</strong> on the Square checkout page, so we know which shoes are yours.</p>
-          <label for="confirm-text" class="sr-only">Your order details</label>
-          <textarea id="confirm-text" readonly rows="5" class="mt-3 w-full rounded-xl bg-black text-white border border-gray-700 px-3 py-2 text-sm font-mono resize-none"></textarea>
-          <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <button id="copy-btn" type="button" class="w-full bg-[#e3b93c] text-gray-900 py-3 rounded-full font-semibold hover:bg-[#f0c94e]">Copy details</button>
-            <a id="square-link" href="#" target="_blank" rel="noopener" class="block w-full text-center bg-white text-gray-900 py-3 rounded-full font-semibold hover:bg-gray-100">Continue to Square &rarr;</a>
-          </div>
-          <p id="copy-status" class="text-xs text-gray-300 text-center mt-2" aria-live="polite"></p>
-        </div>
+        <p id="pay-hint" class="text-xs text-gray-500 text-center mt-3"><i class="fa-solid fa-lock" aria-hidden="true"></i> Secure checkout with Square. Your shoe details are attached to your order automatically.</p>
       </form>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -216,126 +238,103 @@
   <!-- Instagram Script -->
   <script async src="https://www.instagram.com/embed.js"></script>
   <script>
-    // Paste a Square link in each empty quote. Menu text is not changed.
-    // Key is rubber + repair price, so both-shoes and single-shoe stay separate.
-    const links = {
-      "42-0": "https://square.link/u/lGuMnojq",
-      "42-40": "https://square.link/u/o1Tp4wIL",
-      "42-60": "https://square.link/u/nA9EOR50",
-      "42-90": "https://square.link/u/IP50twES",
-      "42-20": "https://square.link/u/dvB76uyU",
-      "42-30": "https://square.link/u/SDr31Jjm",
-      "42-45": "https://square.link/u/ZaaHiv91",
-      "55-0": "https://square.link/u/xBFBHwvs",
-      "55-40": "https://square.link/u/2R7umNPb",
-      "55-60": "https://square.link/u/fJVBMwd9",
-      "55-90": "https://square.link/u/S3lkabdC",
-      "55-20": "https://square.link/u/F2V4euQr",
-      "55-30": "https://square.link/u/UqcVjY3X",
-      "55-45": "https://square.link/u/5tUvfu1k",
-      "grip-0": "https://square.link/u/A5KCjPif",
-      "grip-40": "https://square.link/u/IdcdxHRB",
-      "grip-60": "https://square.link/u/ES48MSKe",
-      "grip-90": "https://square.link/u/wD4FDHZY",
-      "grip-20": "https://square.link/u/x4JjXSjD",
-      "grip-30": "https://square.link/u/2uYWSwZ3",
-      "grip-45": "https://square.link/u/lVfhIg2z",
-      "edge-0": "https://square.link/u/iyoIYami",
-      "edge-40": "https://square.link/u/ffnBmFFB",
-      "edge-60": "https://square.link/u/Y3k3ZZn3",
-      "edge-90": "https://square.link/u/Fen4XboL",
-      "edge-20": "https://square.link/u/Uh6Yuwod",
-      "edge-30": "https://square.link/u/ZiVFiSIc",
-      "edge-45": "https://square.link/u/j2z2ui7F"
-    };
-    // Optional: Apps Script web app / Worker URL that appends a row to the Order Tracker sheet.
-    const ORDER_ENDPOINT = ""; // e.g. "/api/order" (Worker) or "https://script.google.com/macros/s/XXX/exec"
-
+    // Prices shown here are display-only. The server (src/worker.js + src/prices.js) recalculates
+    // the price and rejects the order if it doesn't match what the customer saw.
     const $ = (id) => document.getElementById(id);
-    const rubber = $("rubber"), repair = $("repair"), dropoff = $("dropoff");
-    const model = $("shoe-model"), size = $("shoe-size");
-    const total = $("total"), pay = $("pay"), form = $("order-form");
-    const confirmBox = $("confirm"), confirmText = $("confirm-text"), squareLink = $("square-link");
+    const form = $("order-form"), pay = $("pay");
+    const rubber = $("rubber"), rand = $("rand"), coverage = $("rand-coverage"), dropoff = $("dropoff");
+    const model = $("shoe-model"), size = $("shoe-size"), cname = $("customer-name"), email = $("email"), phone = $("phone");
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    let busy = false;
 
-    function currentUrl() {
-      const key = rubber.options[rubber.selectedIndex].dataset.key + "-" + repair.value;
-      return links[key];
+    function totalDollars() {
+      const r = Number(rubber.selectedOptions[0].dataset.price);
+      const a = rand.selectedOptions[0].dataset;
+      return r + (rand.value === "none" ? 0 : Number(coverage.value === "single" ? a.single : a.both));
     }
-    function isValid() {
-      return model.value.trim().length >= 2 && size.value.trim().length >= 1 && !!dropoff.value && !!currentUrl();
-    }
+    const checks = [
+      [model, "shoe-model-err", () => model.value.trim().length >= 2],
+      [size, "shoe-size-err", () => size.value.trim().length >= 1],
+      [dropoff, "dropoff-err", () => !!dropoff.value],
+      [cname, "customer-name-err", () => cname.value.trim().length >= 2],
+      [email, "email-err", () => EMAIL_RE.test(email.value.trim())],
+      [phone, "phone-err", () => !phone.value.trim() || /^[+\d][\d\s\-().]{7,}$/.test(phone.value.trim())],
+    ];
+    const isValid = () => checks.every(([, , ok]) => ok());
+
     function update() {
-      total.textContent = "$" + (Number(rubber.value) + Number(repair.value));
+      coverage.disabled = rand.value === "none";
+      $("total").textContent = "$" + totalDollars();
       $("dropoff-note").classList.toggle("hidden", dropoff.value !== "arrange");
-      pay.setAttribute("aria-disabled", String(!isValid()));
-      // Details changed after confirming: hide the panel so the copied note can't go stale.
-      confirmBox.classList.add("hidden");
+      pay.setAttribute("aria-disabled", String(!isValid() || busy));
+    }
+    function setFieldError(el, errId, msg) {
+      el.setAttribute("aria-invalid", String(!!msg));
+      el.classList.toggle("border-red-500", !!msg);
+      if (msg) $(errId).textContent = msg;
+      $(errId).classList.toggle("hidden", !msg);
     }
     function showErrors() {
-      [[model, "shoe-model-err"], [size, "shoe-size-err"], [dropoff, "dropoff-err"]].forEach(([el, errId]) => {
-        const bad = !el.value.trim();
-        el.setAttribute("aria-invalid", String(bad));
-        el.classList.toggle("border-red-500", bad);
-        $(errId).classList.toggle("hidden", !bad);
+      let first = null;
+      checks.forEach(([el, errId, ok]) => {
+        const bad = !ok();
+        setFieldError(el, errId, bad ? $(errId).dataset.msg : "");
+        if (bad && !first) first = el;
       });
-      const firstBad = [model, size, dropoff].find((el) => !el.value.trim());
-      if (firstBad) firstBad.focus();
+      if (first) first.focus();
+    }
+    function showFormError(msg) {
+      const box = $("form-error");
+      box.innerHTML = "";
+      const p = document.createElement("p"); p.textContent = msg; box.appendChild(p);
+      const help = document.createElement("p");
+      help.className = "mt-2 text-gray-300";
+      help.innerHTML = 'Still stuck? <a class="underline text-[#e3b93c]" href="https://www.instagram.com/perthresoles/" target="_blank" rel="noopener">Message us on Instagram</a>.';
+      box.appendChild(help);
+      box.classList.remove("hidden");
+    }
+    function setBusy(on) {
+      busy = on;
+      $("pay-spinner").classList.toggle("hidden", !on);
+      $("pay-label").textContent = on ? "Creating your secure checkout\u2026" : "Pay Now with Square";
+      pay.setAttribute("aria-busy", String(on));
+      update();
     }
 
-    function noteText(order) {
-      return [
-        "Perth Resoles order " + order.ref,
-        "Shoe: " + order.shoe_model + " | Size: " + order.shoe_size,
-        "Rubber: " + order.rubber_name + " | Rand repair: " + order.repair_name,
-        "Drop-off: " + order.dropoff_name
-      ].join("\n");
-    }
-
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (busy) return;
+      $("form-error").classList.add("hidden");
       if (!isValid()) { showErrors(); return; }
-      const clean = (t) => t.replace(/\s*\u2014\s*/g, " - ").trim();
-      const order = {
-        ref: "PR-" + Date.now().toString(36).toUpperCase(),
-        rubber: rubber.options[rubber.selectedIndex].text,
-        repair: repair.options[repair.selectedIndex].text,
-        rubber_name: clean(rubber.options[rubber.selectedIndex].text.split("\u2014")[0]),
-        repair_name: clean(repair.options[repair.selectedIndex].text),
-        shoe_model: model.value.trim(),
-        shoe_size: size.value.trim(),
-        dropoff: dropoff.value,
-        dropoff_name: clean(dropoff.options[dropoff.selectedIndex].text),
-        total: Number(rubber.value) + Number(repair.value),
-        created: new Date().toISOString()
-      };
-      if (ORDER_ENDPOINT) {
-        navigator.sendBeacon(ORDER_ENDPOINT, new Blob([JSON.stringify(order)], { type: "text/plain" }));
-      }
-      // Square payment links don't accept a pre-filled note in the URL, so show a
-      // confirmation panel: the customer copies their details, then opens Square.
-      confirmText.value = noteText(order);
-      squareLink.href = currentUrl();
-      $("copy-status").textContent = "";
-      confirmBox.classList.remove("hidden");
-      confirmBox.scrollIntoView({ behavior: "smooth", block: "center" });
-      confirmBox.focus({ preventScroll: true });
-    });
-
-    $("copy-btn").addEventListener("click", async () => {
-      const status = $("copy-status");
+      setBusy(true);
       try {
-        await navigator.clipboard.writeText(confirmText.value);
+        const res = await fetch("/api/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            rubber: rubber.value, rand: rand.value, rand_coverage: rand.value === "none" ? "" : coverage.value,
+            shoe_model: model.value.trim(), shoe_size: size.value.trim(), dropoff: dropoff.value,
+            customer_name: cname.value.trim(), email: email.value.trim(), phone: phone.value.trim(),
+            expected_total: totalDollars()
+          })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.url) { window.location.assign(data.url); return; }
+        const map = { shoe_model: model, shoe_size: size, dropoff, customer_name: cname, email, phone, rand_coverage: coverage };
+        Object.entries(data.fields || {}).forEach(([k, msg]) => { if (map[k]) setFieldError(map[k], map[k].getAttribute("aria-describedby"), msg); });
+        showFormError(data.error || "Sorry, we couldn't start the checkout. Please try again.");
       } catch (err) {
-        confirmText.select();
-        document.execCommand("copy");
+        showFormError("We couldn't reach the checkout. Please check your connection and try again.");
       }
-      status.textContent = "Copied! Now tap \u201cContinue to Square\u201d and paste it into the note.";
-      $("copy-btn").textContent = "Copied \u2713";
-      setTimeout(() => { $("copy-btn").textContent = "Copy details"; }, 2500);
+      setBusy(false);
     });
 
-    [rubber, repair, dropoff].forEach((el) => el.addEventListener("change", update));
-    [model, size].forEach((el) => el.addEventListener("input", update));
+    checks.forEach(([el, errId]) => { $(errId).dataset.msg = $(errId).textContent; });
+    [rubber, rand, coverage, dropoff].forEach((el) => el.addEventListener("change", update));
+    [model, size, cname, email, phone].forEach((el) => el.addEventListener("input", () => {
+      if (el.getAttribute("aria-invalid") === "true") setFieldError(el, el.getAttribute("aria-describedby"), "");
+      update();
+    }));
     update();
   </script>
 </body>

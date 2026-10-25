@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Thank you | Perth Resoles</title>
+  <link rel="icon" href="logo-white-bg.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>body { font-family: system-ui, sans-serif; }</style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center">
+  <main class="max-w-xl mx-auto px-6 py-16 text-center">
+    <img src="logo-dark-bg.png" alt="Perth Resoles" class="w-48 mx-auto rounded-2xl">
+    <h1 class="text-3xl md:text-4xl font-bold mt-6 text-[#e3b93c]">Thanks, your order is in!</h1>
+    <p id="ref-line" class="hidden mt-4 text-lg">Your order number is <strong id="ref" class="text-[#e3b93c]"></strong></p>
+    <p id="dry" class="hidden mt-3 text-sm text-gray-400">(Test / dry run: no payment was taken.)</p>
+    <div class="mt-8 bg-black/40 border border-gray-700 rounded-3xl p-6 text-left">
+      <h2 class="text-xl font-semibold mb-3">What happens next</h2>
+      <ol class="list-decimal list-inside space-y-2 text-gray-200">
+        <li>Square emails you a receipt.</li>
+        <li><strong>Tag your shoes</strong> with your name and order number (tags are on the little wooden Perth Resoles board).</li>
+        <li><strong>Hand them in at the Urban Jungle Climbing Gym counter.</strong> If you chose "Other", message us on Instagram to arrange handover.</li>
+        <li>Turnaround is 3 weeks from when we collect your shoes. We'll let you know when they're ready.</li>
+      </ol>
+    </div>
+    <a href="index.html" class="mt-8 inline-block bg-white text-gray-900 px-10 py-4 rounded-full text-lg font-semibold hover:bg-gray-100">Back to Perth Resoles</a>
+    <p class="mt-6 text-sm text-gray-400">Questions? <a class="underline text-[#e3b93c]" href="https://www.instagram.com/perthresoles/" target="_blank" rel="noopener">Message us on Instagram</a>.</p>
+  </main>
+  <script>
+    const q = new URLSearchParams(location.search);
+    const ref = q.get("ref");
+    if (ref && /^PR-[A-Z0-9-]{4,30}$/.test(ref)) {
+      document.getElementById("ref").textContent = ref;
+      document.getElementById("ref-line").classList.remove("hidden");
+    }
+    if (q.get("dry_run") === "1") document.getElementById("dry").classList.remove("hidden");
+  </script>
+</body>
+</html>
