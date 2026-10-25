@@ -1,6 +1,30 @@
+# Files Cloudflare must never serve as public site assets.
+# Version control and tooling
 .git
+.git/
+.github
+.gitignore
+.gitattributes
+.assetsignore
 .wrangler
 wrangler.jsonc
+wrangler.toml
+node_modules
+# Repo docs and licence (not part of the site)
 README.md
+README-PREVIEW.txt
 LICENSE
+# OS / editor / temp junk
+.DS_Store
+Thumbs.db
 *.TMP
+*.tmp
+*~
+*.swp
+.vscode
+.idea
+# Local preview / review artefacts
+*.diff
+*.patch
+*.zip
+preview_shots
