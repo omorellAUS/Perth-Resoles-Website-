@@ -5,20 +5,19 @@
 // Secrets: env.SQUARE_ACCESS_TOKEN (Worker secret / .dev.vars). Never logged.
 // Env vars: SQUARE_ENV = "sandbox" | "production", SQUARE_LOCATION_ID (optional in sandbox),
 //           SQUARE_DRY_RUN = "true" to skip Square and return a mock checkout URL.
+// Order automation (src/orders.js): POST /api/square-webhook, GET /api/confirm?ref=PR-1234
+//   secrets: SQUARE_WEBHOOK_SIGNATURE_KEY, SHEET_WEBHOOK_SECRET; vars: SQUARE_WEBHOOK_URL, SHEET_WEBHOOK_URL
+//   optional KV binding ORDER_STATE (order lookup + "already forwarded" markers).
 
 import {
   CURRENCY, RUBBERS, RAND_REPAIRS, RAND_COVERAGE, DROPOFFS, priceCents, lineItemName,
 } from "./prices.js";
-
-const SQUARE_VERSION = "2026-09-16";
-const SQUARE_BASE = {
-  sandbox: "https://connect.squareupsandbox.com",
-  production: "https://connect.squareup.com",
-};
+import { SQUARE_VERSION, SQUARE_BASE, squareEnv as sqEnv, sq, getLocationId, searchOrders } from "./square.js";
+import { newShortRef } from "./refs.js";
+import { handleConfirm, handleWebhook } from "./orders.js";
 
 // Dry-run requests kept in memory so the mock checkout page can show them (local trial only).
 const dryRuns = new Map();
-let cachedLocation = null;
 
 export default {
   async fetch(request, env) {
@@ -31,6 +30,16 @@ export default {
         console.error("checkout failed:", err && err.message ? err.message : "unknown error");
         return json({ error: "Sorry, we couldn't start the checkout. Please try again, or message us on Instagram." }, 500);
       }
+    }
+    if (url.pathname === "/api/confirm") {
+      if (request.method !== "GET") return json({ error: "Method not allowed" }, 405, { Allow: "GET" });
+      try { return await handleConfirm(request, env, url); }
+      catch (err) { console.error("confirm failed:", err.message); return json({ status: "error" }, 502); }
+    }
+    if (url.pathname === "/api/square-webhook") {
+      if (request.method !== "POST") return json({ error: "Method not allowed" }, 405, { Allow: "POST" });
+      try { return await handleWebhook(request, env); }
+      catch (err) { console.error("webhook failed:", err.message); return json({ error: "Webhook error" }, 500); }
     }
     if (url.pathname === "/api/mock-checkout") return mockCheckoutPage(url);
     if (url.pathname.startsWith("/api/")) return json({ error: "Not found" }, 404);
@@ -109,16 +118,10 @@ async function handleCheckout(request, env, url) {
     }
   }
 
-  const ref = "PR-" + Date.now().toString(36).toUpperCase() + "-" +
-    crypto.getRandomValues(new Uint32Array(1))[0].toString(36).toUpperCase().slice(0, 4);
   const itemName = lineItemName(o.rubber, o.rand, o.rand_coverage);
   const dropoffName = DROPOFFS[o.dropoff];
-  const summary =
-    `Order ${ref} | ${itemName} | Shoe: ${o.shoe_model} | Size: ${o.shoe_size} | ` +
-    `Drop-off: ${dropoffName} | Customer: ${o.customer_name}`;
-
   const siteUrl = (env.SITE_URL || url.origin).replace(/\/$/, "");
-  const squareEnv = env.SQUARE_ENV === "production" ? "production" : "sandbox";
+  const squareEnv = sqEnv(env);
   const isLocal = ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname);
   const dryRun = env.SQUARE_DRY_RUN === "true" || !env.SQUARE_ACCESS_TOKEN;
 
@@ -127,12 +130,17 @@ async function handleCheckout(request, env, url) {
     return json({ error: "Production Square is disabled on localhost. Use SQUARE_ENV=sandbox for local trials." }, 403);
   }
 
-  let locationId = env.SQUARE_LOCATION_ID || "";
-  if (!dryRun && !locationId) {
-    const loc = await getLocation(env, squareEnv);
+  let locationId = "";
+  if (!dryRun) {
+    const loc = await getLocationId(env);
     if (loc.error) return json({ error: loc.error }, 502);
     locationId = loc.id;
   }
+  const { ref } = await newShortRef(env, { locationId, searchOrders, dryRun });
+
+  const summary =
+    `Order ${ref} | ${itemName} | Shoe: ${o.shoe_model} | Size: ${o.shoe_size} | ` +
+    `Drop-off: ${dropoffName} | Customer: ${o.customer_name}`;
 
   const meta = (v) => String(v).slice(0, 255);
   const reqBody = {
@@ -156,6 +164,11 @@ async function handleCheckout(request, env, url) {
         dropoff: meta(dropoffName),
         rubber: meta(RUBBERS[o.rubber].name),
         rand_repair: meta(o.rand === "none" ? "None" : `${RAND_REPAIRS[o.rand].name} (${RAND_COVERAGE[o.rand_coverage]})`),
+        // Machine-readable keys for the order automation (10 entries max per Square).
+        rubber_key: o.rubber,
+        rand_key: o.rand,
+        rand_coverage: o.rand_coverage || "",
+        dropoff_key: o.dropoff,
       },
     },
     checkout_options: {
@@ -165,6 +178,8 @@ async function handleCheckout(request, env, url) {
     pre_populated_data: { buyer_email: o.email },
     payment_note: summary.slice(0, 500),
   };
+  // Square rejects empty metadata values (e.g. rand_coverage when there is no rand repair).
+  for (const [k, v] of Object.entries(reqBody.order.metadata)) if (v === "") delete reqBody.order.metadata[k];
   if (o.phone_e164) reqBody.pre_populated_data.buyer_phone_number = o.phone_e164;
 
   const endpoint = `${SQUARE_BASE[squareEnv]}/v2/online-checkout/payment-links`;
@@ -181,51 +196,30 @@ async function handleCheckout(request, env, url) {
     });
   }
 
-  let { res, data } = await callSquare(env, endpoint, reqBody);
+  let { ok: resOk, status: resStatus, data } = await sq(env, "POST", "/v2/online-checkout/payment-links", reqBody);
   // If Square rejects only the optional pre-filled email/phone, retry once without it:
   // the customer simply types it on Square's page instead of being blocked here.
   const errFields = (data.errors || []).map((e) => e.field || "");
-  if (!res.ok && errFields.length && errFields.every((f) => f.startsWith("pre_populated_data"))) {
+  if (!resOk && errFields.length && errFields.every((f) => f.startsWith("pre_populated_data"))) {
     console.warn("Square rejected pre-filled buyer details; retrying without them.");
     delete reqBody.pre_populated_data;
     reqBody.idempotency_key = crypto.randomUUID();
-    ({ res, data } = await callSquare(env, endpoint, reqBody));
+    ({ ok: resOk, status: resStatus, data } = await sq(env, "POST", "/v2/online-checkout/payment-links", reqBody));
   }
-  if (!res.ok || !data.payment_link || !data.payment_link.url) {
+  if (!resOk || !data.payment_link || !data.payment_link.url) {
     const codes = (data.errors || []).map((e) => `${e.code}${e.field ? " (" + e.field + ")" : ""}`).join(", ");
-    console.error(`Square CreatePaymentLink failed: HTTP ${res.status} ${codes}`);
+    console.error(`Square CreatePaymentLink failed: HTTP ${resStatus} ${codes}`);
     return json({ error: "Sorry, we couldn't start the checkout. Please try again, or message us on Instagram." }, 502);
   }
-  return json({ url: data.payment_link.url, ref, amount: amount / 100 });
-}
-
-async function callSquare(env, endpoint, body) {
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.SQUARE_ACCESS_TOKEN}`,
-      "Square-Version": SQUARE_VERSION,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  const data = await res.json().catch(() => ({}));
-  return { res, data };
-}
-
-async function getLocation(env, squareEnv) {
-  if (cachedLocation) return cachedLocation;
-  const res = await fetch(`${SQUARE_BASE[squareEnv]}/v2/locations`, {
-    headers: { Authorization: `Bearer ${env.SQUARE_ACCESS_TOKEN}`, "Square-Version": SQUARE_VERSION },
-  });
-  const data = await res.json().catch(() => ({}));
-  const loc = (data.locations || []).find((l) => l.status === "ACTIVE");
-  if (!loc) return { error: "Square location not found. Set SQUARE_LOCATION_ID." };
-  if (loc.currency !== CURRENCY) {
-    return { error: `Square ${squareEnv} location uses ${loc.currency}, not ${CURRENCY}. Use an Australian sandbox test account.` };
+  if (env.ORDER_STATE) {
+    // Lets /api/confirm find the order fast, and keeps the customer's typed name/phone (not stored in
+    // Square metadata, per Square's guidance). Expires after 90 days.
+    await env.ORDER_STATE.put("ref:" + ref, JSON.stringify({
+      order_id: data.payment_link.order_id, payment_link_id: data.payment_link.id,
+      customer_name: o.customer_name, email: o.email, phone: o.phone_e164 || "", created: new Date().toISOString(),
+    }), { expirationTtl: 90 * 86400 });
   }
-  cachedLocation = { id: loc.id };
-  return cachedLocation;
+  return json({ url: data.payment_link.url, ref, amount: amount / 100 });
 }
 
 // ---------- dry-run mock checkout (local trial only) ----------

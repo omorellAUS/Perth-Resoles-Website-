@@ -5,3 +5,12 @@ SQUARE_ENV=sandbox
 SQUARE_LOCATION_ID=
 # true = don't call Square at all; show the request that would be sent
 SQUARE_DRY_RUN=false
+
+# --- Order automation (optional for the trial) ---
+# Your Apps Script web app URL (ends in /exec). Leave blank to skip sending orders to the sheet.
+SHEET_WEBHOOK_URL=
+# Any long random password. Must be the SAME as the SHARED_SECRET script property in Apps Script.
+SHEET_WEBHOOK_SECRET=
+# Square webhook (only once the site is live; Square can't reach localhost):
+SQUARE_WEBHOOK_SIGNATURE_KEY=
+SQUARE_WEBHOOK_URL=
