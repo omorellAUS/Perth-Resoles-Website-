@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /thank-you
-Disallow: /api/
-
-Sitemap: https://www.perthresoles.com.au/sitemap.xml

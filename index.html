@@ -4,11 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perth Resoles | Climbing Shoe Resoles Perth WA</title>
-  <meta name="description" content="Climbing shoe resoles and rand repairs in Perth, WA with Vibram XS Grip, XS Edge and Unparallel RH rubber. Drop off at Urban Jungle Climbing Gym. 3 week turnaround from when we collect your shoes.">
-  <meta property="og:title" content="Perth Resoles | Climbing Shoe Resoles Perth WA">
-  <meta property="og:description" content="Climbing shoe resoles and rand repairs in Perth, WA. Order online, drop off at Urban Jungle Climbing Gym.">
-  <meta property="og:image" content="logo-white-bg.png">
-  <link rel="icon" href="logo-white-bg.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
@@ -34,7 +29,7 @@
   <section class="hero text-white py-40 md:py-72 min-h-[90vh] flex items-center text-center">
     <div class="max-w-5xl mx-auto px-5">
       <p class="text-3xl md:text-5xl mb-6 font-light">Perth Resoles</p>
-      <p class="text-xl md:text-2xl max-w-3xl mx-auto">Climbing shoe resoles and rand repairs in Perth, WA. Drop off at Urban Jungle Climbing Gym.</p>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto">climbing shoe resoles and repairs in the Perth Hills</p>
 
       <a href="#pricing" 
          class="mt-10 inline-block bg-white text-gray-900 px-12 py-5 rounded-full text-xl font-semibold hover:bg-gray-100">
@@ -56,138 +51,64 @@
       <h2 class="text-4xl font-bold text-center mb-4">Services & Pricing</h2>
       <p class="text-center text-gray-600 mb-12">All prices are for standard climbing shoes. Final price may vary based on condition.</p>
 
-      <!-- How to order -->
-      <div id="how-to-order" class="max-w-xl mx-auto mb-8 bg-gray-50 border border-gray-200 rounded-3xl p-6 md:p-8">
-        <h3 class="text-2xl font-semibold text-center mb-5">How to order</h3>
-        <ol class="space-y-3 text-base md:text-lg list-decimal list-inside">
-          <li><strong>Scan the QR code</strong> on the Perth Resoles board at Urban Jungle Climbing Gym (or keep going here).</li>
-          <li><strong>Select your options</strong>: rubber, rand repair, shoe model, shoe size and your contact details.</li>
-          <li><strong>Pay securely with Square</strong>. Your shoe details and order number are attached to your order automatically.</li>
-          <li><strong>Tag your shoes</strong> with your name and order number and hand them in at the Urban Jungle counter. Tags are on the little wooden Perth Resoles board at the gym.</li>
-        </ol>
-        <p class="text-sm text-gray-600 text-center mt-4">Turnaround is 3 weeks from when we collect your shoes.</p>
+      <div class="max-w-xl mx-auto mb-14 bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
+        <h3 class="text-2xl font-semibold text-center mb-6">HOW TO ORDER YOUR SHOES</h3>
+        <p class="text-lg text-center mb-2">1. Select your shoe repairs</p>
+        <p class="text-lg text-center mb-2">2. Complete payment and Tag your shoes</p>
+        <p class="text-lg text-center mb-6">3. Drop off your shoes</p>        
+
+        <label class="block text-sm font-semibold">Rubber 
+          <select id="rubber" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
+            <option value="80" data-key="42">Unparallel 4.2mm RH — base $80</option>
+            <option value="90" data-key="55">Unparallel 5.5mm RH — base $90</option>
+            <option value="80" data-key="grip">Vibram XS Grip 4.0mm — base $80</option>
+            <option value="80" data-key="edge">Vibram XS Edge 4.0mm — base $80</option>
+          </select>
+        </label>
+        <label class="block text-sm font-semibold mt-4">Rand Repair Options
+          <select id="repair" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
+            <option value="0" data-key="none">None</option>
+            <option value="40" data-key="toe">Toe cap    —     $40 Both shoes</option>
+            <option value="60" data-key="half">Half rand —  $60 Both shoes</option>
+            <option value="90" data-key="full">Full rand —  $90 Both shoes</option>
+             <option value="20" data-key="toe">Toe cap   —  $20 single shoe only</option>
+            <option value="30" data-key="half">Half rand —  $30 single shoe only</option>
+              <option value="45" data-key="full">Full rand —$45 single shoe only</option>
+              </select>
+        </label>
+        <label class="block text-sm font-semibold mt-4">Drop Off and Pick Up Options
+          <select id="repair" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
+            <option value="0" data-key="none">Drop off and Pick up at Urban Jungle Climbing Gym</option>
+            <option value="40" data-key="toe">Drop off and pick up Perth Hills </option>
+             <option value="40" data-key="toe">I prefer to send my shoes via postage  </option>
+          </select>
+        </label>
+        <div class="mt-6 bg-gray-900 text-white rounded-2xl p-5 text-center">
+          <p class="text-sm text-gray-300">Total Price</p>
+          <p id="total" class="text-4xl font-bold mt-1">$80</p>
+          <p class="text-xs text-gray-400 mt-2">Final price may change if the shoes need more work.</p>
+        </div>
+        <a id="pay" href="https://square.link/u/lGuMnojq" target="_blank" class="mt-4 block w-full bg-gray-900 text-white text-center py-4 rounded-full font-semibold">Pay Now with Square</a>
+        <p class="text-xs text-gray-500 text-center mt-3">After payment you get an email with drop-off instructions. Turnaround is 2–3 weeks from payment.</p>
       </div>
-
-      <form id="order-form" novalidate class="max-w-xl mx-auto mb-14 bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
-        <h3 class="text-2xl font-semibold text-center mb-6">Build your order</h3>
-
-        <label for="rubber" class="block text-sm font-semibold">Rubber</label>
-        <select id="rubber" name="rubber" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
-          <option value="unparallel-4.2" data-price="80">Unparallel 4.2mm RH &mdash; base $80</option>
-          <option value="unparallel-5.5" data-price="90">Unparallel 5.5mm RH &mdash; base $90</option>
-          <option value="vibram-xs-grip" data-price="80">Vibram XS Grip 4.0mm &mdash; base $80</option>
-          <option value="vibram-xs-edge" data-price="80">Vibram XS Edge 4.0mm &mdash; base $80</option>
-        </select>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-          <div>
-            <label for="rand" class="block text-sm font-semibold">Rand repair</label>
-            <select id="rand" name="rand" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
-              <option value="none" data-both="0" data-single="0">None</option>
-              <option value="toe-cap" data-both="40" data-single="20">Toe cap &mdash; $40 / $20</option>
-              <option value="half-rand" data-both="60" data-single="30">Half rand &mdash; $60 / $30</option>
-              <option value="full-rand" data-both="90" data-single="45">Full rand &mdash; $90 / $45</option>
-            </select>
-          </div>
-          <div>
-            <label for="rand-coverage" class="block text-sm font-semibold">Rand repair on</label>
-            <select id="rand-coverage" name="rand_coverage" disabled aria-describedby="rand-coverage-err" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base disabled:bg-gray-100 disabled:text-gray-400">
-              <option value="both">Both shoes</option>
-              <option value="single">Single shoe only</option>
-            </select>
-            <p id="rand-coverage-err" class="hidden text-sm text-red-600 mt-1">Please choose both shoes or a single shoe.</p>
-          </div>
-        </div>
-        <p class="text-xs text-gray-500 mt-1">Rand prices shown as both shoes / single shoe.</p>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-          <div>
-            <label for="shoe-model" class="block text-sm font-semibold">Shoe brand &amp; model <span class="text-red-600" aria-hidden="true">*</span></label>
-            <input id="shoe-model" name="shoe_model" type="text" required maxlength="60" autocomplete="off"
-                   placeholder="e.g. La Sportiva Solution" aria-describedby="shoe-model-err"
-                   class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
-            <p id="shoe-model-err" class="hidden text-sm text-red-600 mt-1">Please enter your shoe brand and model.</p>
-          </div>
-          <div>
-            <label for="shoe-size" class="block text-sm font-semibold">Shoe size <span class="text-red-600" aria-hidden="true">*</span></label>
-            <input id="shoe-size" name="shoe_size" type="text" required maxlength="15" autocomplete="off"
-                   placeholder="e.g. EU 41.5" aria-describedby="shoe-size-err"
-                   class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
-            <p id="shoe-size-err" class="hidden text-sm text-red-600 mt-1">Please enter your shoe size.</p>
-          </div>
-        </div>
-
-        <label for="dropoff" class="block text-sm font-semibold mt-4">Drop off &amp; pick up <span class="text-red-600" aria-hidden="true">*</span></label>
-        <select id="dropoff" name="dropoff" required aria-describedby="dropoff-err" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 bg-white text-base">
-          <option value="urban-jungle" selected>Urban Jungle Climbing Gym (counter)</option>
-          <option value="arrange">Other &mdash; I'll message Perth Resoles to arrange handover</option>
-        </select>
-        <p id="dropoff-err" class="hidden text-sm text-red-600 mt-1">Please choose where you'll drop off your shoes.</p>
-        <p id="dropoff-note" class="hidden text-sm text-gray-600 mt-1">
-          After paying, message us on <a href="https://www.instagram.com/perthresoles/" target="_blank" rel="noopener" class="underline">Instagram</a> with your order number to arrange handover.
-        </p>
-
-        <h4 class="text-sm font-semibold uppercase tracking-wide text-gray-500 mt-6">Your details</h4>
-        <p class="text-xs text-gray-500">We use these for your order confirmation and to tell you when your shoes are ready.</p>
-        <div class="grid grid-cols-1 gap-4 mt-2">
-          <div>
-            <label for="customer-name" class="block text-sm font-semibold">Name <span class="text-red-600" aria-hidden="true">*</span></label>
-            <input id="customer-name" name="customer_name" type="text" required maxlength="80" autocomplete="name"
-                   placeholder="e.g. Alex Smith" aria-describedby="customer-name-err"
-                   class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
-            <p id="customer-name-err" class="hidden text-sm text-red-600 mt-1">Please enter your name.</p>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-          <div>
-            <label for="email" class="block text-sm font-semibold">Email <span class="text-red-600" aria-hidden="true">*</span></label>
-            <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email"
-                   placeholder="you@example.com" aria-describedby="email-err"
-                   class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
-            <p id="email-err" class="hidden text-sm text-red-600 mt-1">Please enter a valid email address.</p>
-          </div>
-          <div>
-            <label for="phone" class="block text-sm font-semibold">Phone <span class="text-gray-500 font-normal">(optional)</span></label>
-            <input id="phone" name="phone" type="tel" maxlength="25" autocomplete="tel" inputmode="tel"
-                   placeholder="e.g. 0412 345 678" aria-describedby="phone-err"
-                   class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-3 text-base">
-            <p id="phone-err" class="hidden text-sm text-red-600 mt-1">Please check your phone number (e.g. 0412 345 678).</p>
-          </div>
-        </div>
-
-        <div class="mt-6 bg-gray-900 text-white rounded-2xl p-5 text-center" aria-live="polite">
-          <p class="text-sm text-gray-300">Total price</p>
-          <p id="total" class="text-4xl font-bold mt-1 text-[#e3b93c]">$80</p>
-          <p id="total-desc" class="text-xs text-gray-400 mt-2">Final price may change if the shoes need more work.</p>
-        </div>
-
-        <div id="form-error" role="alert" class="hidden mt-4 rounded-2xl border-2 border-[#e3b93c] bg-gray-900 text-white p-4 text-sm"></div>
-
-        <button id="pay" type="submit" aria-disabled="true"
-                class="mt-4 flex items-center justify-center gap-3 w-full bg-gray-900 text-white text-center py-4 rounded-full font-semibold aria-disabled:opacity-50">
-          <svg id="pay-spinner" class="hidden animate-spin h-5 w-5 text-[#e3b93c]" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" class="opacity-25"></circle><path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg>
-          <span id="pay-label">Pay Now with Square</span>
-        </button>
-        <p id="pay-hint" class="text-xs text-gray-500 text-center mt-3"><i class="fa-solid fa-lock" aria-hidden="true"></i> Secure checkout with Square. Your shoe details are attached to your order automatically.</p>
-      </form>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/photo basic resole Unparallel.png" alt="Basic Resole 4.2mm" class="w-full h-64 object-contain bg-white" loading="lazy" decoding="async">
+          <img src="Banner Images/photo basic resole Unparallel.png" alt="Basic Resole 4.2mm" class="w-full h-64 object-contain bg-white">
           <div class="p-6">
-            <h3 class="font-semibold text-lg leading-tight">Basic Resole with Unparallel 4.2mm and 5.5mm RH</h3>
+            <h3 class="font-semibold text-lg leading-tight">Basic Resole with Unparallel 4.2mm and 5.5mmRH</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$80.00 and $90.00</p>
           </div>
         </div>
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/Vibram basic resole.png" alt="Vibram Grip" class="w-full h-64 object-contain bg-white" loading="lazy" decoding="async">
+          <img src="Banner Images/Vibram basic resole.png" alt="Vibram Grip" class="w-full h-64 object-contain bg-white">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Basic Resoles with Vibram XS Edge and Grip 4.0mm</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$80.00</p>
           </div>
         </div>
          <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/Rand+resole .png" alt="Rand Repair Grip" class="w-full h-64 object-contain bg-white" loading="lazy" decoding="async">
+          <img src="Banner Images/Rand+resole .png" alt="Rand Repair Grip" class="w-full h-64 object-contain bg-white">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Resole + Toe cap or Rand Repairs with Vibram XS Edge or Grip 4.0mm</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$120.00-$170.00</p>
@@ -195,14 +116,14 @@
         </div>
 
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/Rand+resole .png" alt="Rand Repair Unparallel" class="w-full h-64 object-contain bg-white" loading="lazy" decoding="async">
+          <img src="Banner Images/Rand+resole .png" alt="Rand Repair Unparallel" class="w-full h-64 object-contain bg-white">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Resole + Toe cap or Rand Repairs with 4.2mm and 5.5mm Unparallel RH</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$120.00-$180.00</p>
                </div>
         </div>
         <div class="service-card bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-          <img src="Banner Images/Stitch Repair.PNG" alt="Stitch Repair" class="w-full h-64 object-contain bg-white" loading="lazy" decoding="async">
+          <img src="Banner Images/Stitch Repair.PNG" alt="Stitch Repair" class="w-full h-64 object-contain bg-white">
           <div class="p-6">
             <h3 class="font-semibold text-lg leading-tight">Shoe Stitch Repairs available upon request</h3>
             <p class="text-3xl font-bold text-gray-900 mt-4">$15.00-$30.00</p>
@@ -213,7 +134,7 @@
       <div class="mt-20 bg-gray-900 text-white p-12 rounded-3xl text-center">
         <h3 class="text-3xl font-bold mb-4">Need a Custom Quote?</h3>
         <p class="text-lg mb-8">Send clear photos of your shoes (front, side, and sole) on Instagram for accurate pricing and turnaround time.</p>
-        <a href="https://www.instagram.com/perthresoles/" target="_blank" rel="noopener"
+        <a href="https://www.instagram.com/perthresoles/" target="_blank" 
            class="inline-block bg-white text-gray-900 px-12 py-5 rounded-full text-xl font-semibold hover:bg-gray-100">
           Message us on Instagram →
         </a>
@@ -224,7 +145,7 @@
   <section class="py-20 bg-gray-50">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-4xl font-bold text-center mb-4">Recent Projects</h2>
-      <p class="text-center text-gray-600 mb-12">Follow us on Instagram <a href="https://www.instagram.com/perthresoles/" target="_blank" rel="noopener" class="text-blue-600">@perthresoles</a></p>
+      <p class="text-center text-gray-600 mb-12">Follow us on Instagram <a href="https://www.instagram.com/perthresoles/" target="_blank" class="text-blue-600">@perthresoles</a></p>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DWTh926FNHN/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#3c3c3c; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
@@ -238,104 +159,52 @@
   <!-- Instagram Script -->
   <script async src="https://www.instagram.com/embed.js"></script>
   <script>
-    // Prices shown here are display-only. The server (src/worker.js + src/prices.js) recalculates
-    // the price and rejects the order if it doesn't match what the customer saw.
-    const $ = (id) => document.getElementById(id);
-    const form = $("order-form"), pay = $("pay");
-    const rubber = $("rubber"), rand = $("rand"), coverage = $("rand-coverage"), dropoff = $("dropoff");
-    const model = $("shoe-model"), size = $("shoe-size"), cname = $("customer-name"), email = $("email"), phone = $("phone");
-    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    let busy = false;
-
-    function totalDollars() {
-      const r = Number(rubber.selectedOptions[0].dataset.price);
-      const a = rand.selectedOptions[0].dataset;
-      return r + (rand.value === "none" ? 0 : Number(coverage.value === "single" ? a.single : a.both));
-    }
-    const checks = [
-      [model, "shoe-model-err", () => model.value.trim().length >= 2],
-      [size, "shoe-size-err", () => size.value.trim().length >= 1],
-      [dropoff, "dropoff-err", () => !!dropoff.value],
-      [cname, "customer-name-err", () => cname.value.trim().length >= 2],
-      [email, "email-err", () => EMAIL_RE.test(email.value.trim())],
-      [phone, "phone-err", () => !phone.value.trim() || /^[+\d][\d\s\-().]{7,}$/.test(phone.value.trim())],
-    ];
-    const isValid = () => checks.every(([, , ok]) => ok());
-
+    // Paste a Square link in each empty quote. Menu text is not changed.
+    // Key is rubber + repair price, so both-shoes and single-shoe stay separate.
+    const links = {
+      "42-0": "https://square.link/u/lGuMnojq",
+      "42-40": "https://square.link/u/o1Tp4wIL",
+      "42-60": "https://square.link/u/nA9EOR50",
+      "42-90": "https://square.link/u/IP50twES",
+      "42-20": "https://square.link/u/dvB76uyU",
+      "42-30": "https://square.link/u/SDr31Jjm",
+      "42-45": "https://square.link/u/ZaaHiv91",
+      "55-0": "https://square.link/u/xBFBHwvs",
+      "55-40": "https://square.link/u/2R7umNPb",
+      "55-60": "https://square.link/u/fJVBMwd9",
+      "55-90": "https://square.link/u/S3lkabdC",
+      "55-20": "https://square.link/u/F2V4euQr",
+      "55-30": "https://square.link/u/UqcVjY3X",
+      "55-45": "https://square.link/u/5tUvfu1k",
+      "grip-0": "https://square.link/u/A5KCjPif",
+      "grip-40": "https://square.link/u/IdcdxHRB",
+      "grip-60": "https://square.link/u/ES48MSKe",
+      "grip-90": "https://square.link/u/wD4FDHZY",
+      "grip-20": "https://square.link/u/x4JjXSjD",
+      "grip-30": "https://square.link/u/2uYWSwZ3",
+      "grip-45": "https://square.link/u/lVfhIg2z",
+      "edge-0": "https://square.link/u/iyoIYami",
+      "edge-40": "https://square.link/u/ffnBmFFB",
+      "edge-60": "https://square.link/u/Y3k3ZZn3",
+      "edge-90": "https://square.link/u/Fen4XboL",
+      "edge-20": "https://square.link/u/Uh6Yuwod",
+      "edge-30": "https://square.link/u/ZiVFiSIc",
+      "edge-45": "https://square.link/u/j2z2ui7F"
+    };
+    const rubber = document.getElementById("rubber");
+    const repair = document.getElementById("repair");
+    const total = document.getElementById("total");
+    const pay = document.getElementById("pay");
     function update() {
-      coverage.disabled = rand.value === "none";
-      $("total").textContent = "$" + totalDollars();
-      $("dropoff-note").classList.toggle("hidden", dropoff.value !== "arrange");
-      pay.setAttribute("aria-disabled", String(!isValid() || busy));
+      const rubberKey = rubber.options[rubber.selectedIndex].dataset.key;
+      const repairPrice = repair.value;
+      total.textContent = "$" + (Number(rubber.value) + Number(repairPrice));
+      const url = links[rubberKey + "-" + repairPrice];
+      pay.href = url || "#pricing";
+      pay.textContent = url ? "Pay Now with Square" : "Add Square link for this option";
     }
-    function setFieldError(el, errId, msg) {
-      el.setAttribute("aria-invalid", String(!!msg));
-      el.classList.toggle("border-red-500", !!msg);
-      if (msg) $(errId).textContent = msg;
-      $(errId).classList.toggle("hidden", !msg);
-    }
-    function showErrors() {
-      let first = null;
-      checks.forEach(([el, errId, ok]) => {
-        const bad = !ok();
-        setFieldError(el, errId, bad ? $(errId).dataset.msg : "");
-        if (bad && !first) first = el;
-      });
-      if (first) first.focus();
-    }
-    function showFormError(msg) {
-      const box = $("form-error");
-      box.innerHTML = "";
-      const p = document.createElement("p"); p.textContent = msg; box.appendChild(p);
-      const help = document.createElement("p");
-      help.className = "mt-2 text-gray-300";
-      help.innerHTML = 'Still stuck? <a class="underline text-[#e3b93c]" href="https://www.instagram.com/perthresoles/" target="_blank" rel="noopener">Message us on Instagram</a>.';
-      box.appendChild(help);
-      box.classList.remove("hidden");
-    }
-    function setBusy(on) {
-      busy = on;
-      $("pay-spinner").classList.toggle("hidden", !on);
-      $("pay-label").textContent = on ? "Creating your secure checkout\u2026" : "Pay Now with Square";
-      pay.setAttribute("aria-busy", String(on));
-      update();
-    }
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      if (busy) return;
-      $("form-error").classList.add("hidden");
-      if (!isValid()) { showErrors(); return; }
-      setBusy(true);
-      try {
-        const res = await fetch("/api/checkout", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            rubber: rubber.value, rand: rand.value, rand_coverage: rand.value === "none" ? "" : coverage.value,
-            shoe_model: model.value.trim(), shoe_size: size.value.trim(), dropoff: dropoff.value,
-            customer_name: cname.value.trim(), email: email.value.trim(), phone: phone.value.trim(),
-            expected_total: totalDollars()
-          })
-        });
-        const data = await res.json().catch(() => ({}));
-        if (res.ok && data.url) { window.location.assign(data.url); return; }
-        const map = { shoe_model: model, shoe_size: size, dropoff, customer_name: cname, email, phone, rand_coverage: coverage };
-        Object.entries(data.fields || {}).forEach(([k, msg]) => { if (map[k]) setFieldError(map[k], map[k].getAttribute("aria-describedby"), msg); });
-        showFormError(data.error || "Sorry, we couldn't start the checkout. Please try again.");
-      } catch (err) {
-        showFormError("We couldn't reach the checkout. Please check your connection and try again.");
-      }
-      setBusy(false);
-    });
-
-    checks.forEach(([el, errId]) => { $(errId).dataset.msg = $(errId).textContent; });
-    [rubber, rand, coverage, dropoff].forEach((el) => el.addEventListener("change", update));
-    [model, size, cname, email, phone].forEach((el) => el.addEventListener("input", () => {
-      if (el.getAttribute("aria-invalid") === "true") setFieldError(el, el.getAttribute("aria-describedby"), "");
-      update();
-    }));
-    update();
+    rubber.addEventListener("change", update);
+    repair.addEventListener("change", update);
   </script>
 </body>
 </html>
