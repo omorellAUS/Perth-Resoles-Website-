@@ -28,3 +28,13 @@ Thumbs.db
 *.patch
 *.zip
 preview_shots
+# Worker source, tooling and local secrets (Worker code runs server-side; never serve it)
+src
+scripts
+package.json
+package-lock.json
+.dev.vars
+.dev.vars*
+.env*
+run-local.sh
+README-TRIAL.txt

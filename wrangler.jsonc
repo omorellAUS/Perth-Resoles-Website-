@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // NOTE: Cloudflare has two auto-config branches named "perthresoles" and "perthresoleswebsite".
+  // Confirm which Worker name is live before any deploy.
+  "name": "perthresoles",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-06-05",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  // Safe defaults. For go-live set SQUARE_ENV to "production" and SQUARE_LOCATION_ID to "L2KV77K60Z4XZ".
+  // The token is a secret: `npx wrangler secret put SQUARE_ACCESS_TOKEN` (never put it here).
+  "vars": {
+    "SQUARE_ENV": "sandbox",
+    "SQUARE_LOCATION_ID": "",
+    "SQUARE_DRY_RUN": "false"
+  }
+}
