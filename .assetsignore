@@ -38,3 +38,6 @@ package-lock.json
 .env*
 run-local.sh
 README-TRIAL.txt
+# Apps Script source, tests and mock output (not website files)
+apps-script
+mock-sheet-output

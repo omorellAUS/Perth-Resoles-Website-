@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "wrangler dev --port 8787",
     "check-prices": "node scripts/check-prices.mjs",
-    "test": "node scripts/check-prices.mjs && node scripts/test-checkout.mjs"
+    "test": "node scripts/check-prices.mjs && node --test apps-script/test/*.test.mjs && node scripts/test-checkout.mjs",
+    "test:gas": "node --test apps-script/test/*.test.mjs",
+    "test:automation": "node scripts/test-automation.mjs",
+    "mock-sheet": "node apps-script/test/mock-sheet-server.mjs 8799"
   },
   "devDependencies": {
     "wrangler": "^4.152.0"

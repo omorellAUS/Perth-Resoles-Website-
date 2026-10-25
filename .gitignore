@@ -8,3 +8,5 @@ node_modules
 # OS junk
 .DS_Store
 Thumbs.db
+# local mock sheet output
+mock-sheet-output
