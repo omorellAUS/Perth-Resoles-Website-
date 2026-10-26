@@ -11,7 +11,8 @@
  *   SHARED_SECRET  - same value as SHEET_WEBHOOK_SECRET in the website's .dev.vars / Worker secret
  *   TEST_MODE      - "true" (default) writes to 'Test Orders'; set "false" to use 'Order Tracking'
  *   BLOCKED_WORDS  - comma list; a draft containing any of these is NOT created (logged instead)
- *   CREATE_DRAFTS  - "true" (default) / "false"
+ *   CREATE_DRAFTS  - "true" (default) / "false"  (turns confirmation emails on/off)
+ *   AUTO_SEND      - "false" (default) saves a Gmail draft; "true" sends the confirmation automatically
  */
 
 var CONFIG = {
@@ -215,16 +216,21 @@ function lookupService_(ss, rubber, thickness, rand, coverage) {
 
 function draftConfirmation_(d, service, cfg) {
   if (!cfg.drafts) return 'skipped (CREATE_DRAFTS is off)';
-  if (!d.email) { log_('WARN', d.order_id, 'No email draft', 'Order has no email address'); return 'skipped (no email)'; }
+  if (!d.email) { log_('WARN', d.order_id, 'No email', 'Order has no email address'); return 'skipped (no email)'; }
   if (d.dropoff_key !== 'urban-jungle') {
-    log_('INFO', d.order_id, 'No email draft', 'Drop-off is not Urban Jungle - send a manual email');
+    log_('INFO', d.order_id, 'No email', 'Drop-off is not Urban Jungle - send a manual email');
     return 'skipped (not Urban Jungle)';
   }
   var email = renderConfirmationEmail_(d, service);
   var hit = findBlockedWord_([email.subject, email.text, email.html].join('\n'), cfg.blocked);
   if (hit) {
-    log_('BLOCKED', d.order_id, 'Email draft blocked by address guard', 'Matched blocked word "' + hit + '". No draft created - check this order manually.');
+    log_('BLOCKED', d.order_id, 'Email blocked by address guard', 'Matched blocked word "' + hit + '". Nothing sent - check this order manually.');
     return 'blocked';
+  }
+  // AUTO_SEND=true sends the confirmation straight away (sandbox test orders are still only drafted).
+  if (cfg.autoSend && d.environment !== 'sandbox') {
+    GmailApp.sendEmail(d.email, email.subject, email.text, { htmlBody: email.html, name: 'Perth Resoles' });
+    return 'sent';
   }
   GmailApp.createDraft(d.email, email.subject, email.text, { htmlBody: email.html, name: 'Perth Resoles' });
   return 'created';
@@ -369,7 +375,8 @@ function props_() {
     secret: p.getProperty('SHARED_SECRET') || '',
     testMode: String(p.getProperty('TEST_MODE') || 'true').toLowerCase() !== 'false', // safe default: test tab
     blocked: blocked,
-    drafts: String(p.getProperty('CREATE_DRAFTS') || 'true').toLowerCase() !== 'false'
+    drafts: String(p.getProperty('CREATE_DRAFTS') || 'true').toLowerCase() !== 'false',
+    autoSend: String(p.getProperty('AUTO_SEND') || 'false').toLowerCase() === 'true'
   };
 }
 
