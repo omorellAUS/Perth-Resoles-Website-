@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   // NOTE: Cloudflare has two auto-config branches named "perthresoles" and "perthresoleswebsite".
   // Confirm which Worker name is live before any deploy.
-  "name": "perthresoles",
+  "name": "perthresoleswebsite",
   "main": "src/worker.js",
   "compatibility_date": "2026-06-05",
   "observability": { "enabled": true },
@@ -14,17 +14,17 @@
   // Order lookups + "already sent to the sheet" markers. Locally, wrangler dev simulates this KV.
   // Before a real deploy: `npx wrangler kv namespace create ORDER_STATE` and paste the id here.
   "kv_namespaces": [
-    { "binding": "ORDER_STATE", "id": "REPLACE_WITH_ORDER_STATE_KV_ID" }
+    { "binding": "ORDER_STATE", "id": "18e46c5b696b404e9b36e77c9557fd0a" }
   ],
   // Safe defaults. For go-live set SQUARE_ENV to "production" and SQUARE_LOCATION_ID to "L2KV77K60Z4XZ".
   // Secrets are NEVER put here: `npx wrangler secret put SQUARE_ACCESS_TOKEN`
   // (also SQUARE_WEBHOOK_SIGNATURE_KEY and SHEET_WEBHOOK_SECRET).
   "vars": {
-    "SQUARE_ENV": "sandbox",
-    "SQUARE_LOCATION_ID": "",
+    "SQUARE_ENV": "production",
+    "SQUARE_LOCATION_ID": "L2KV77K60Z4XZ",
     "SQUARE_DRY_RUN": "false",
-    "SITE_URL": "",
-    "SQUARE_WEBHOOK_URL": "",
-    "SHEET_WEBHOOK_URL": ""
+    "SITE_URL": "https://www.perthresoles.com.au",
+    "SQUARE_WEBHOOK_URL": "https://www.perthresoles.com.au/api/square-webhook",
+    "SHEET_WEBHOOK_URL": "https://script.google.com/macros/s/AKfycbxnbOhxShqk1y7ADPI3RF7lwws-Z3Ikcj8KeyxKU2H0_ZXhqwTJKl2xO_XYsE1o1rQa/exec"
   }
 }
